@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CardSlider
 //
-//  Created by Saoud Rizwan on 2/27/17.
+//  Created by Saoud Rizwan on 2/26/17.
 //  Copyright © 2017 Saoud Rizwan. All rights reserved.
 //
 
@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let vc = ViewController()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        self.window = window
+        
         return true
     }
 

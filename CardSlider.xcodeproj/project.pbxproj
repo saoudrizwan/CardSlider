@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		100D4D9C1E64C99D00486D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4D9B1E64C99D00486D7C /* AppDelegate.swift */; };
-		100D4D9E1E64C99D00486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4D9D1E64C99D00486D7C /* ViewController.swift */; };
-		100D4DA11E64C99D00486D7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100D4D9F1E64C99D00486D7C /* Main.storyboard */; };
-		100D4DA31E64C99D00486D7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100D4DA21E64C99D00486D7C /* Assets.xcassets */; };
 		100D4DA61E64C99D00486D7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100D4DA41E64C99D00486D7C /* LaunchScreen.storyboard */; };
+		100D4DAE1E64CA0900486D7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100D4DAD1E64CA0900486D7C /* Assets.xcassets */; };
+		100D4DB41E64CA2800486D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DAF1E64CA2800486D7C /* AppDelegate.swift */; };
+		100D4DB51E64CA2800486D7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB01E64CA2800486D7C /* CardView.swift */; };
+		100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */; };
+		100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB21E64CA2800486D7C /* ImageCard.swift */; };
+		100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB31E64CA2800486D7C /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		100D4D981E64C99D00486D7C /* CardSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100D4D9B1E64C99D00486D7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		100D4D9D1E64C99D00486D7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		100D4DA01E64C99D00486D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		100D4DA21E64C99D00486D7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		100D4DA51E64C99D00486D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100D4DA71E64C99D00486D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100D4DAD1E64CA0900486D7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		100D4DAF1E64CA2800486D7C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		100D4DB01E64CA2800486D7C /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
+		100D4DB21E64CA2800486D7C /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
+		100D4DB31E64CA2800486D7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +58,12 @@
 		100D4D9A1E64C99D00486D7C /* CardSlider */ = {
 			isa = PBXGroup;
 			children = (
-				100D4D9B1E64C99D00486D7C /* AppDelegate.swift */,
-				100D4D9D1E64C99D00486D7C /* ViewController.swift */,
-				100D4D9F1E64C99D00486D7C /* Main.storyboard */,
-				100D4DA21E64C99D00486D7C /* Assets.xcassets */,
+				100D4DAF1E64CA2800486D7C /* AppDelegate.swift */,
+				100D4DB31E64CA2800486D7C /* ViewController.swift */,
+				100D4DB21E64CA2800486D7C /* ImageCard.swift */,
+				100D4DB01E64CA2800486D7C /* CardView.swift */,
+				100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */,
+				100D4DAD1E64CA0900486D7C /* Assets.xcassets */,
 				100D4DA41E64C99D00486D7C /* LaunchScreen.storyboard */,
 				100D4DA71E64C99D00486D7C /* Info.plist */,
 			);
@@ -96,7 +102,7 @@
 				TargetAttributes = {
 					100D4D971E64C99D00486D7C = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5M795QY47C;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,9 +130,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				100D4DAE1E64CA0900486D7C /* Assets.xcassets in Resources */,
 				100D4DA61E64C99D00486D7C /* LaunchScreen.storyboard in Resources */,
-				100D4DA31E64C99D00486D7C /* Assets.xcassets in Resources */,
-				100D4DA11E64C99D00486D7C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,22 +142,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				100D4D9E1E64C99D00486D7C /* ViewController.swift in Sources */,
-				100D4D9C1E64C99D00486D7C /* AppDelegate.swift in Sources */,
+				100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */,
+				100D4DB51E64CA2800486D7C /* CardView.swift in Sources */,
+				100D4DB41E64CA2800486D7C /* AppDelegate.swift in Sources */,
+				100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */,
+				100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		100D4D9F1E64C99D00486D7C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				100D4DA01E64C99D00486D7C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		100D4DA41E64C99D00486D7C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -261,11 +261,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M795QY47C;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CardSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -274,8 +277,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M795QY47C;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CardSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
