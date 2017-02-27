@@ -23,3 +23,6 @@ You can also modify the `CardOption` enum to show your own custom text on the ca
 ### `EmojiOptionsOverlay.swift`
 This file has all the logic code associated with showing the 6 emojis on the sides when the user pans the card around, as well as the heart emoji on the top right.
 
+## Credits
+Yaroslav Zubko, the creator of the Dribbble shot that inspired this project, was kind enough to send me his design files. This concept and any artwork (including the emojis) is thanks to Yaroslav.
+https://dribbble.com/Yar_Z
