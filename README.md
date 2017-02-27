@@ -4,7 +4,7 @@ Here's Yaroslav's Dribbble shot that inspired me to create a 100% Swift project 
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/23380926/88e837ee-fcf1-11e6-917a-49de8fc8ee13.gif" alt="Dribbble shot" />
 </p>
-*<sub>https://dribbble.com/shots/3217240--14-Sub-Level-Slider</sub>*
+https://dribbble.com/shots/3217240--14-Sub-Level-Slider
 
 And here's a demo of the actual Swift project:
 <p align="center">
