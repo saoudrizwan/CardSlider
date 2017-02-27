@@ -1,4 +1,4 @@
-# Card Slider
+# Card Slider for Swift
 Tons of apps use a Tinder-style interface with cards that users can swipe right to 'like' or left to 'dislike'. But [Yaroslav Zubko](https://dribbble.com/Yar_Z) came up with an innovative and fresh approach to giving users more options besides just 'like' or 'dislike'.
 Here's Yaroslav's Dribbble shot that inspired me to create a 100% Swift project of this unique & new interface:
 <p align="center">
@@ -14,7 +14,7 @@ And here's a demo of the actual Swift project:
 ## Usage
 
 This project isn't a framework, it's more so of a demonstration of how to approach this sort of user interface.
-`CardSlider` basically uses a `UIPanGestureRecognizer` in conjunction with several `UIKit Dynamics` behaviors. Because of this, ideally you would want all the card logic code in a view controller class, so I opted not make an external class that uses delegation to talk to the view controller.
+Card Slider basically uses a `UIPanGestureRecognizer` in conjunction with several `UIKit Dynamics` behaviors. Because of this, ideally you would want all the card logic code in a view controller class, so I opted not make an external class that uses delegation to talk to the view controller.
 
 ### `CardView.swift`
 Most of the logic code is in the `ViewController` class, but each card is a subview of `CardView`. In the demo project, `ImageCard` is a subview of CardView and has its own custom subviews and layouts. 
