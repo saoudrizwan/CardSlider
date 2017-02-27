@@ -1,10 +1,9 @@
 # Card Slider for Swift
 Tons of apps use a Tinder-style interface with cards that users can swipe right to 'like' or left to 'dislike'. But [Yaroslav Zubko](https://dribbble.com/Yar_Z) came up with an innovative and fresh approach to giving users more options besides just 'like' or 'dislike'.
-Here's Yaroslav's Dribbble shot that inspired me to create a 100% Swift project of this unique & new interface:
+Here's Yaroslav's [Dribbble shot](https://dribbble.com/shots/3217240--14-Sub-Level-Slider) that inspired me to create a 100% Swift project of this unique & new interface:
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/23380926/88e837ee-fcf1-11e6-917a-49de8fc8ee13.gif" alt="Dribbble shot" />
 </p>
-https://dribbble.com/shots/3217240--14-Sub-Level-Slider
 
 And here's a demo of the actual Swift project:
 <p align="center">
