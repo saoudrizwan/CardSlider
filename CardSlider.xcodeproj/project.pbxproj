@@ -307,6 +307,7 @@
 				100D4DAC1E64C99D00486D7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

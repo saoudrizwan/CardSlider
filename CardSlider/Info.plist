@@ -29,7 +29,7 @@
 	<key>UIRequiresFullScreen</key>
 	<false/>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

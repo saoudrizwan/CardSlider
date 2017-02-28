@@ -13,7 +13,7 @@ class EmojiOptionsOverlay: UIView {
     let emojiPadding: CGFloat = 20
     let emojiSize = CGSize(width: 64, height: 64)
     let emojiInitialOffset: CGFloat = 90
-    let emojiInitialAlpha: CGFloat = 0.5
+    let emojiInitialAlpha: CGFloat = 0.45
     
     let like1Emoji = UIImageView(image: UIImage(named: "like1"))
     let like2Emoji = UIImageView(image: UIImage(named: "like2"))
@@ -150,7 +150,7 @@ class EmojiOptionsOverlay: UIView {
     private func hideLikeEmojis() {
         if isHidingLikeEmojis { return }
         isHidingLikeEmojis = true
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.0,  options: [], animations: {
             self.like1Emoji.frame.origin.x += self.emojiInitialOffset
             self.like2Emoji.frame.origin.x += self.emojiInitialOffset
             self.like3Emoji.frame.origin.x += self.emojiInitialOffset
@@ -164,7 +164,7 @@ class EmojiOptionsOverlay: UIView {
     private func showLikeEmojis() {
         if isShowingLikeEmojis { return }
         isShowingLikeEmojis = true
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: [], animations: {
             self.like1Emoji.frame.origin.x -= self.emojiInitialOffset
             self.like2Emoji.frame.origin.x -= self.emojiInitialOffset
             self.like3Emoji.frame.origin.x -= self.emojiInitialOffset
@@ -192,7 +192,7 @@ class EmojiOptionsOverlay: UIView {
     private func showDislikeEmojis() {
         if isShowingDislikeEmojis { return }
         isShowingDislikeEmojis = true
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: [], animations: {
             self.dislike1Emoji.frame.origin.x += self.emojiInitialOffset
             self.dislike2Emoji.frame.origin.x += self.emojiInitialOffset
             self.dislike3Emoji.frame.origin.x += self.emojiInitialOffset

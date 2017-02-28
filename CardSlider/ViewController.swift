@@ -10,22 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    /// Data structure for custom cards - in this example, we're using an array of ImageCards
     var cards = [ImageCard]()
+    /// The emojis on the sides are simply part of a view that sits ontop of everything else,
+    /// but this overlay view is non-interactive so any touch events are passed on to the next receivers.
     var emojiOptionsOverlay: EmojiOptionsOverlay!
-    var cardSize: CGSize!
     
-    // scale and alpha of successive cards visible to the user
-    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
-    let cardInteritemSpacing: CGFloat = 15
-    
-    // UIKit dynamics properties
-    var dynamicAnimator: UIDynamicAnimator!
-    var cardAttachmentBehavior: UIAttachmentBehavior!
-    var cardSnapBehavior: UISnapBehavior!
-    var cardPushBehavior: UIPushBehavior!
-    var cardItemBehavior: UIDynamicItemBehavior!
-    weak var cardRemoveTimer: Timer!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
@@ -33,23 +23,26 @@ class ViewController: UIViewController {
         setUpDummyUI()
         
         // 1. create a deck of cards
-        cardSize = CGSize(width: self.view.frame.width - 60, height: self.view.frame.height * 0.6)
         // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
         // of course, you could always add new cards to self.cards and call layoutCards() again
         for _ in 1...20 {
-            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: cardSize.width, height: cardSize.height))
+            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
             cards.append(card)
         }
         
         // 2. layout the first 4 cards for the user
         layoutCards()
         
-        // 3. set up emoji options overlay
+        // 3. set up the (non-interactive) emoji options overlay
         emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
         self.view.addSubview(emojiOptionsOverlay)
     }
     
+    /// Scale and alpha of successive cards visible to the user
+    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
+    let cardInteritemSpacing: CGFloat = 15
     
+    /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         // frontmost card (first card of the deck)
         let firstCard = cards[0]
@@ -66,14 +59,15 @@ class ViewController: UIViewController {
             
             card.layer.zPosition = CGFloat(cards.count - i)
             
+            // here we're just getting some hand-picked vales from cardAttributes (an array of tuples) 
+            // which will tell us the attributes of each card in the 4 cards visible to the user
             let downscale = cardAttributes[i].downscale
             let alpha = cardAttributes[i].alpha
-            
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
             card.alpha = alpha
             
+            // position each card so there's a set space (cardInteritemSpacing) between each card, to give it a fanned out look
             card.center.x = self.view.center.x
-            
             card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
             // workaround: scale causes heights to skew so compensate for it with some tweaking
             if i == 3 {
@@ -83,9 +77,12 @@ class ViewController: UIViewController {
             self.view.addSubview(card)
         }
         
+        // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
     }
     
+    /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
+    /// showNextCard() just adds the next card to the 4 visible cards and animates each card to move forward.
     func showNextCard() {
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
@@ -142,11 +139,17 @@ class ViewController: UIViewController {
         self.view.bringSubview(toFront: cards[1])
     }
     
+    /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
     func removeOldFrontCard() {
         cards[0].removeFromSuperview()
         cards.remove(at: 0)
     }
     
+    /// UIKit dynamics variables that we need references to.
+    var dynamicAnimator: UIDynamicAnimator!
+    var cardAttachmentBehavior: UIAttachmentBehavior!
+    
+    /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
     func handleCardPan(sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
@@ -159,6 +162,7 @@ class ViewController: UIViewController {
         case .began:
             dynamicAnimator.removeAllBehaviors()
             let offset = UIOffsetMake(panLocationInCard.x - cards[0].bounds.midX, panLocationInCard.y - cards[0].bounds.midY);
+            // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
         case .changed:
@@ -234,16 +238,15 @@ class ViewController: UIViewController {
                 
                 if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) || cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
                     // snap to center
-                    cardSnapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
-                    dynamicAnimator.addBehavior(cardSnapBehavior)
+                    let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
+                    dynamicAnimator.addBehavior(snapBehavior)
                 } else {
                     
                     let velocity = sender.velocity(in: self.view)
                     let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
                     pushBehavior.pushDirection = CGVector(dx: velocity.x/10, dy: velocity.y/10)
                     pushBehavior.magnitude = 175
-                    self.cardPushBehavior = pushBehavior
-                    dynamicAnimator.addBehavior(self.cardPushBehavior)
+                    dynamicAnimator.addBehavior(pushBehavior)
                     // spin after throwing
                     var angular = CGFloat.pi / 2 // angular velocity of spin
                     
@@ -254,11 +257,11 @@ class ViewController: UIViewController {
                     } else {
                         angular = angular * -1
                     }
-                    cardItemBehavior = UIDynamicItemBehavior(items: [cards[0]])
-                    cardItemBehavior.friction = 0.2
-                    cardItemBehavior.allowsRotation = true
-                    cardItemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
-                    dynamicAnimator.addBehavior(cardItemBehavior)
+                    let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
+                    itemBehavior.friction = 0.2
+                    itemBehavior.allowsRotation = true
+                    itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
+                    dynamicAnimator.addBehavior(itemBehavior)
                     
                     hideFrontCard()
                     showNextCard()
@@ -269,12 +272,14 @@ class ViewController: UIViewController {
         }
     }
     
+    /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
     func hideFrontCard() {
         if #available(iOS 10.0, *) {
+            var cardRemoveTimer: Timer? = nil
             cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { [weak self] (_) in
                 guard self != nil else { return }
                 if !(self!.view.bounds.contains(self!.cards[0].center)) {
-                    self!.cardRemoveTimer.invalidate()
+                    cardRemoveTimer!.invalidate()
                     UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
                         guard self != nil else { return }
                         self!.cards[0].alpha = 0.0
@@ -284,7 +289,7 @@ class ViewController: UIViewController {
                 }
             })
         } else {
-            // Fallback on earlier versions
+            // fallback for earlier versions
             UIView.animate(withDuration: 0.2, delay: 1.5, options: [.curveEaseIn], animations: {
                 self.cards[0].alpha = 0.0
             }, completion: { (_) in
@@ -292,15 +297,19 @@ class ViewController: UIViewController {
             })
         }
     }
-    
-    // MARK: Hide status bar
+}
+
+// MARK: - Unrelated to cards logic code
+
+extension ViewController {
+    /// Hide status bar
     override var prefersStatusBarHidden: Bool {
         get {
             return true
         }
     }
     
-    // MARK: Dummy UI
+    /// Dummy UI
     func setUpDummyUI() {
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
