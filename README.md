@@ -9,6 +9,7 @@ And here's a demo of the actual Swift project:
 <p align="center">
     <img src="https://cloud.githubusercontent.com/assets/7799382/23379940/ba3b91fa-fced-11e6-9639-ff50538a99d9.gif" alt="Demo" />
 </p>
+<sub> Note: you can pivot the cards in any direction, it all depends on where your finger is on the card.</sub>
 
 ## Usage
 
