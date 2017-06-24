@@ -133,10 +133,12 @@ class ViewController: UIViewController {
             newCard.alpha = alpha
             newCard.center.x = self.view.center.x
             newCard.frame.origin.y = self.cards[1].frame.origin.y - (3 * self.cardInteritemSpacing) + 1.5
-        }, completion: nil)
-        
+        }, completion: { (_) in
+            
+        })
         // first card needs to be in the front for proper interactivity
-        self.view.bringSubview(toFront: cards[1])
+        self.view.bringSubview(toFront: self.cards[1])
+        
     }
     
     /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
@@ -151,6 +153,8 @@ class ViewController: UIViewController {
     
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
     func handleCardPan(sender: UIPanGestureRecognizer) {
+        // if we're in the process of hiding a card, don't let the user interace with the cards yet
+        if cardIsHiding { return }
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
         // distance user must pan right or left to trigger an option
@@ -263,8 +267,9 @@ class ViewController: UIViewController {
                     itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
                     dynamicAnimator.addBehavior(itemBehavior)
                     
-                    hideFrontCard()
                     showNextCard()
+                    hideFrontCard()
+                    
                 }
             }
         default:
@@ -273,18 +278,20 @@ class ViewController: UIViewController {
     }
     
     /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
+    var cardIsHiding = false
     func hideFrontCard() {
         if #available(iOS 10.0, *) {
             var cardRemoveTimer: Timer? = nil
-            cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { [weak self] (_) in
+            cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (_) in
                 guard self != nil else { return }
                 if !(self!.view.bounds.contains(self!.cards[0].center)) {
                     cardRemoveTimer!.invalidate()
-                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
-                        guard self != nil else { return }
-                        self!.cards[0].alpha = 0.0
-                    }, completion: { [weak self] (_) in
-                        self!.removeOldFrontCard()
+                    self?.cardIsHiding = true
+                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                        self?.cards[0].alpha = 0.0
+                    }, completion: { (_) in
+                        self?.removeOldFrontCard()
+                        self?.cardIsHiding = false
                     })
                 }
             })

@@ -137,7 +137,7 @@ class CardViewLabel: UILabel {
         
         self.layer.cornerRadius = frame.height / 2
         self.layer.masksToBounds = true
-        self.layer.zPosition = CGFloat(FLT_MAX)
+        self.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
     }
     
     convenience init(origin: CGPoint, color: UIColor) {
