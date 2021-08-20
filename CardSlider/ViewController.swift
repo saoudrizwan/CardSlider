@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         }
         
         // make sure that the first card in the deck is at the front
-        self.view.bringSubview(toFront: cards[0])
+        self.view.bringSubviewToFront(cards[0])
     }
     
     /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         // 2. add a new card (now the 4th card in the deck) to the very back
         if 4 > (cards.count - 1) {
             if cards.count != 1 {
-                self.view.bringSubview(toFront: cards[1])
+                self.view.bringSubviewToFront(cards[1])
             }
             return
         }
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
             
         })
         // first card needs to be in the front for proper interactivity
-        self.view.bringSubview(toFront: self.cards[1])
+        self.view.bringSubviewToFront(self.cards[1])
         
     }
     
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
-    func handleCardPan(sender: UIPanGestureRecognizer) {
+    @objc func handleCardPan(sender: UIPanGestureRecognizer) {
         // if we're in the process of hiding a card, don't let the user interace with the cards yet
         if cardIsHiding { return }
         // change this to your discretion - it represents how far the user must pan up or down to change the option
@@ -165,7 +165,7 @@ class ViewController: UIViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffsetMake(panLocationInCard.x - cards[0].bounds.midX, panLocationInCard.y - cards[0].bounds.midY);
+            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY);
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
